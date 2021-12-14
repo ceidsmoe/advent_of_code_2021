@@ -39,12 +39,20 @@ if __name__ == "__main__":
                             intersections += 1
                     
                     # check if both vertical
-                    if startx_i == endx_i == startx_j == endx_j and (starty_i <= starty_j <= endy_i or starty_j <= starty_i <= endy_j):
-                        intersections += 1
+                    if startx_i == endx_i == startx_j == endx_j:
+                        if starty_i <= starty_j <= endy_i:
+                            intersections += (endy_i+1 - starty_j)
+                        elif starty_j <= starty_i <= endy_j:
+                            intersections += (endy_j+1 - starty_i)
                         print("vert")
                     # check if horizontal
-                    if starty_i == endy_i == starty_j == endy_j and (startx_i <= startx_j <= endx_i or startx_j <= startx_i <= endx_j):
-                        intersections += 1
+                    if starty_i == endy_i == starty_j == endy_j:
+                        if startx_i <= startx_j <= endx_i:
+                            intersections += (endx_i+1 - startx_j)
+                        elif startx_j <= startx_i <= endx_j:
+                            intersections += (endx_j+1 - startx_i)
+                        elif startx_i <= endx_j <= endx_i:
+                            intersections += (endx_i+1 - endx_j)
                         print("horizon")
 
                     print("------------------------------")
